@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0px;
+				margin: 0px;
+				font-family: "微软雅黑";
+			}
+			
+			.goodsItem {
+				width: 280px;
+				height: 400px;
+				float: left;
+				border: 1px solid #ccc;
+				margin: 5px;
+			}
+			
+			#goods {
+				width: 910px;
+			}
+			
+			.goditem {
+				list-style: none;
+			}
+			
+			.godpic img {
+				display: block;
+				width: 250px;
+				height: 250px;
+				margin: 0px auto;
+			}
+			
+			.godprice,
+			.godinfo,
+			.godadd {
+				display: block;
+				width: 220px;
+				margin: 0px auto;
+				text-align: center;
+			}
+			
+			.godprice {
+				font-size: 20px;
+				color: #f00;
+			}
+			
+			.godinfo {
+				text-align: center;
+				font-size: 14px;
+				margin: 10px 0px;
+			}
+			
+			.godadd a {
+				display: block;
+				width: 150px;
+				height: 36px;
+				background-color: #fd6a01;
+				border-radius: 10px;
+				margin: 0px auto;
+				text-decoration: none;
+				color: #fff;
+				line-height: 36px;
+			}
+			
+			#godcar {
+				position: fixed;
+				right: 0px;
+				top: 40%;
+				width: 72px;
+				height: 64px;
+			}
+			
+			#godcar .dnum {
+				width: 24px;
+				height: 24px;
+				border-radius: 12px;
+				background-color: #f00;
+				text-align: center;
+				line-height: 24px;
+				position: absolute;
+				font-size: 12px;
+				top: 0px;
+			}
+			
+			.godadd .bg {
+				background-color: #808080;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="goods">
+			<div class="goodsItem">
+				<ul class="goditem">
+					<li class="godpic"><img src="img/1.jpg"></li>
+					<li class="godprice">￥25.00</li>
+					<li class="godinfo">《飞鸟集》中很多诗歌是用孟加拉文创作的，这部诗集最早由郑振铎先生译介到中国。</li>
+					<li class="godadd"><a href="javascript:;">加入购物车</a></li>
+				</ul>
+			</div>
+			<div class="goodsItem">
+				<ul class="goditem">
+					<li class="godpic"><img src="img/2.jpg"></li>
+					<li class="godprice">￥56.00</li>
+					<li class="godinfo">本书主要介绍了如何使用现有的Web 相关技术构建Android 应用程序。</li>
+					<li class="godadd"><a href="javascript:;">加入购物车</a></li>
+				</ul>
+			</div>
+			<div class="goodsItem">
+				<ul class="goditem">
+					<li class="godpic"><img src="img/1.jpg"></li>
+					<li class="godprice">￥37.00</li>
+					<li class="godinfo">用文字打败时间。冯唐最畅销作品，杂文才是其销量最好、最受欢迎的作品。</li>
+					<li class="godadd"><a href="javascript:;">加入购物车</a></li>
+				</ul>
+			</div>
+			<div class="goodsItem">
+				<ul class="goditem">
+					<li class="godpic"><img src="img/2.jpg"></li>
+					<li class="godprice">￥25.00</li>
+					<li class="godinfo">《飞鸟集》中很多诗歌是用孟加拉文创作的，这部诗集最早由郑振铎先生译介到中国。</li>
+					<li class="godadd"><a href="javascript:;">加入购物车</a></li>
+				</ul>
+			</div>
+			<div class="goodsItem">
+				<ul class="goditem">
+					<li class="godpic"><img src="img/1.jpg"></li>
+					<li class="godprice">￥56</li>
+					<li class="godinfo">本书主要介绍了如何使用现有的Web 相关技术构建Android 应用程序。</li>
+					<li class="godadd"><a href="javascript:;">加入购物车</a></li>
+				</ul>
+			</div>
+			<div class="goodsItem">
+				<ul class="goditem">
+					<li class="godpic"><img src="img/2.jpg"></li>
+					<li class="godprice">￥37.00</li>
+					<li class="godinfo">用文字打败时间。冯唐最畅销作品,杂文才是其销量最好、最受欢迎的作品。</li>
+					<li class="godadd"><a href="javascript:;">加入购物车</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="godcar">
+			<div class="dnum">0</div>
+			<div class="dcar">
+				<img src="img/cart.png" alt="" />
+			</div>
+		</div>
+
+		<script src="js/jquery-1.10.2.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			var img = $(".goditem").find(".godpic").find("img");//获取商品的图片
+			var cimg = img.clone();//将商品的图片复制一份
+			
+			//通过animate()函数实现图片移动
+			//得到商品图片的top和left
+			var imgtop = img.offset().top;
+			var imgleft = img.offset().left;
+			//得到购物车的top和left
+			var cartop = $("#godcar").offset().top;
+			var carleft = $("#godcar").offset().left;
+
+			cimg.appendTo($("body")).css({
+				"position": "absolute", //绝对定位
+				"opacity": "0.7",
+				"top": imgtop,
+				"left": imgleft
+			}).animate({
+				"top": cartop,
+				"left": carleft,
+				"width": "40px",
+				"height": "40px",
+				"opacity": "0.3" //透明度
+			}, 1000, function() {
+				cimg.remove(); //图片消失
+				$(".dnum").text(i); //购物车数量变化
+			});
+			
+			
+			var i = 0;
+			$(function() {
+				
+				var inum = 0;
+				if (localStorage.getItem("inum") !== null) {
+					inum = localStorage.getItem("inum");//获取值
+				}
+				$(".dnum").text(inum);
+								
+				
+				$(".godadd").click(function() {
+					if (!$(this).find("a").hasClass("bg")) {
+						
+						i++;
+						
+						$(this).find("a").addClass("bg");
+						var img = $(".goditem").find(".godpic").find("img");
+						var cimg = img.clone();
+
+						var imgtop = img.offset().top;
+						var imgleft = img.offset().left;
+
+						var cartop = $("#godcar").offset().top;
+						var carleft = $("#godcar").offset().left;
+
+						cimg.appendTo($("body")).css({
+							"position": "absolute",
+							"opacity": "0.7",
+							"top": imgtop,
+							"left": imgleft
+						}).animate({
+							"top": cartop,
+							"left": carleft,
+							"width": "40px",
+							"height": "40px",
+							"opacity": "0.3"
+						}, 1000, function() {
+							cimg.remove();
+							$(".dnum").text(i);
+													
+							localStorage.setItem("inum", i);//给localStorage设值
+							
+						});
+					}
+
+				});
+			});
+		</script>
+	</body>
+
+</html>
